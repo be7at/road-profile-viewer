@@ -1,21 +1,76 @@
 [project]
 name = "road-profile-viewer"
 version = "0.1.0"
-description = "Interactive 2D road profile viewer with camera ray intersection using Dash and Plotly"
-readme = "README.md"
-authors = [
-    { name = "be7at", email = "berat.seven@outlook.de" }
-]
-requires-python = ">=3.13"
-dependencies = [
-    "dash>=2.14.0",
-    "plotly>=5.18.0",
-    "numpy>=1.26.0",
+description = "Interactive road profile visualization"
+requires-python = ">=3.12"
+
+[tool.ruff]
+# Maximale Zeilenlänge festlegen
+line-length = 88
+
+# Ziel-Python-Version
+target-version = "py312"
+
+# Bestimmte Verzeichnisse ausschließen
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
 ]
 
-[project.scripts]
-road-profile-viewer = "road_profile_viewer:main"
+[tool.ruff.lint]
+# Regeln zum Aktivieren auswählen
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # Pyflakes
+    "I",   # isort (import sorting)
+    "N",   # pep8-naming
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
 
-[build-system]
-requires = ["uv_build>=0.8.19,<0.9.0"]
-build-backend = "uv_build"
+# Spezifische Regeln ignorieren, falls nötig
+ignore = []
+
+# Auto-Fix für diese Regeln erlauben
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.format]
+# Doppelte Anführungszeichen verwenden (wie Black)
+quote-style = "double"
+
+# Unix-Zeilenenden verwenden
+line-ending = "lf"
+
+# Mit Leerzeichen einrücken
+indent-style = "space"
+
+[tool.pyright]
+# Strikte Type-Prüfung
+typeCheckingMode = "strict"
+
+# Python-Version
+pythonVersion = "3.12"
+
+# Nur Source-Dateien einschließen
+include = ["src"]
+
+# Verzeichnisse ausschließen
+exclude = [
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+]
+
+# Reporting-Optionen
+reportMissingTypeStubs = true
+reportUnknownMemberType = "warning"
+reportUnknownParameterType = "warning"
+reportUnknownVariableType = "warning"
+reportUnknownArgumentType = "warning"
